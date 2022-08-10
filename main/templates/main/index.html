@@ -7,20 +7,21 @@ Index
 {% block content %}
 <h1 style="color: rgb(44, 145, 61);">Home index</h1>
 {% if user.is_authenticated %}
-<!-- Logout<a href="{% provider_login_url 'google' %}"> here</a> -->
-Logout<a href="/accounts/logout/"> here</a><br><br>
-                <h1 style="color: rgb(184, 17, 73); font-style:initial; border: 2px solid rgb(53, 86, 43);">Hello {{user.username}}!<br>
-               
-                        {% if user.email %}
-                        Your email is {{user.email}}<br>
-                        {% else %}
-                You are logged in via Google and full name is : {{ user.socialaccount_set.all.0.extra_data.name }}
-                <br> 
-                {% endif %}
-                </h1>
-                <h1 style="color: rgb(241, 64, 221);">View your items <a href="3">here</a></h1>
-                
-                {% else %}
-                Please Login <a href="/login"> here</a>
-          {% endif %}
-        {% endblock %}
+<button class="btn btn-success"><a href="/accounts/logout" >Logout</a></button><br><br>
+<h1 style="color: rgb(184, 17, 73); font-style:initial; border: 2px solid rgb(53, 86, 43);">Hello {{user.username}}!<br>
+
+        {% if user.email %}
+        Your email is {{user.email}}<br>
+        {% else %}
+        You are logged in via Google and full name is : {{ user.socialaccount_set.all.0.extra_data.name }}
+        <br>
+        We dont have your email id, Please add it by clicking <a href="/accounts/email/">here</a> and dont forget to
+        make it primary!!
+        {% endif %}
+</h1>
+<h1 style="color: rgb(241, 64, 221);">View your items <a href="3">here</a></h1>
+
+{% else %}
+Please Login <a href="/login"> here</a>
+{% endif %}
+{% endblock %}
