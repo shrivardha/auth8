@@ -1,0 +1,1 @@
+web: gunicorn auth8.wsgi
