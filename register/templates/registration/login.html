@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% load socialaccount %}
+{% providers_media_js %}
+{% block title %}
+Login
+{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if user.is_authenticated %}
+ <a href="/">You are Logged in!</a>
+{% else %}
+<form method="POST", class="form-group">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <p>Don't have an accoount? Create one <a href="/register">here</a></p><br>
+    <button type="submit" class="btn btn-success">Login</button>
+    <!-- <a href="{% provider_login_url 'google' %}">Login With Google</a> -->
+    <a href="/accounts/google/login/">Login With Google</a>
+</form>
+{% endif %}
+        {% endblock %}

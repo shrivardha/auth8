@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Items
+{% endblock %}
+{% block content %}
+<h1 style="border: 2px solid red;">Items</h1>
+{% if user.is_authenticated %}
+
+                <h1 style="color: rgb(184, 17, 73); font-style:initial; border: 2px solid blue;" >Hello {{user.username}}!
+                        {% if user.email %}
+                        Your email is {{user.email}}<br>
+                        {% else %}
+                You are logged in via Google and full name is : {{ user.socialaccount_set.all.0.extra_data.name }}
+                {% endif %}
+                </h1>
+                
+
+<form  method="post" action="#">
+        {% csrf_token %}
+<ul>
+{% for item in info.item_set.all %}
+<li>{{item.info}}::{{item.text}}</li>
+{% endfor %}
+</ul>
+<button type="submit", name="newInfo", value="newInfo">Add Info</button>	
+        <input type="text", name="new">
+        <!-- <button type="submit", name="save", value="save">Save</button> -->
+</form>
+<a href="/">Back</a>
+{% else %}
+                Please Login <a href="/login">here</a>
+          {% endif %}
+        {% endblock %}
